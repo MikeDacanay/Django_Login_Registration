@@ -7,12 +7,12 @@
 	<h2> Registration </h2>
 		<form action="add" method="POST">
 		{% csrf_token %}
-			First Name:
-			<input type="text" name="First Name"><br>
-			Last Name:
-			<input type="text" name="Last Name"><br>
-			Email:
-			<input type="text" name="Email"><br>
+			Name:
+			<input type="text" name="name"><br>
+			Username:
+			<input type="text" name="username"><br>
+			Date Hired:
+			<input type="date" name="datehired"><br>
 			Password:
 			<input type="password" name="Password"><br>
 			Confirm PW:
@@ -20,19 +20,21 @@
 			<input type="submit" value="Register">
 		</form>
 	<h2> Login </h2>
-	<form>
-		Email
-		<input type="text" name="email_log"><br>
+	<form action="login" method="POST">
+		{% csrf_token %}
+		Username
+		<input type="text" name="username"><br>
 		Password
-		<input type="text" name="pass_log">
+		<input type="password" name="pass_log">
 		<input type="submit" value="Login">
 	</form>
-    {% if messages %}
-        <div class="messages">
-            {% for message in messages %}
-            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-            {% endfor %}
-        </div>
-    {% endif %}
+
+{% if messages %}
+	<ul class="messages">
+	    {% for message in messages %}
+	    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+	    {% endfor %}
+	</ul>
+{% endif %}
 </body>
 </html>

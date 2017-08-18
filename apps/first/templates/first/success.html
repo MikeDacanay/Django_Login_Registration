@@ -4,6 +4,50 @@
 	<title></title>
 </head>
 <body>
-	<h1>SUCCESS!!</h1>
+	<h1>Hello! {{request.session.name}}</h1>
+	Your Wish List:
+	<table>
+		<tr>
+			<th>Item</th>
+			<th>Added By by</th>
+			<th>Date Added</th>
+			<th>Action</th>
+		</tr>
+	{% for wish in wish_pane %}
+		<tr>
+			<td><a href="{{wish.id}}/check">{{wish.Item}}</a></td>
+			<td>{{wish.creator_id}}</td>
+			<td>{{wish.created_at}}</td>
+			<td>{% if wish.creator_id == wisher %}
+					<a href="{{wish.id}}/delete">Delete</a>	
+				{% endif %}
+				{% if wish.creator_id != wisher %}
+					<a href="{{wish.id}}/remove_wish">Remove from my WishList</a>	
+				{% endif %}
+			</td>
+
+		</tr>
+	{% endfor %}
+	</table>
+	Other User's Wish List:
+	<table>
+		<tr>
+			<th>Item</th>
+			<th>Added By by</th>
+			<th>Date Added</th>
+			<th>Action</th>
+		</tr>
+	{% for other in all_pane %}
+
+			<tr>
+				<td><a href="{{other.id}}/check">{{other.Item}}</a></td>
+				<td>{{other.creator_id}}</td>
+				<td>{{other.created_at}}</td>
+				<td><a href="{{other.id}}/take_wish">Add to my WishList</a></td>
+			</tr>
+	{% endfor %}
+	</table>	
+	<a href="/wish_items/create"><b>Add Item</b></a><br><br><br><br>
+	<a href="/logout">Logout</a>
 </body>
 </html>

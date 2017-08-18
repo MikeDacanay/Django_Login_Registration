@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>{{item.Item}}</h1><br>
+	Users who added this product
+	{% for user in userz %}
+		<br>{{user.name}}
+	{% endfor %}<br><br><br><br>
+	<a href="/logout">Logout</a>
+</body>
+</html>
